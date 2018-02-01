@@ -215,7 +215,7 @@ class AdditionalStacksPlugin {
     let resources = stack.resources;
     if (Array.isArray(resources)) {
       resources = resources.reduce(
-        (memo, value) => Object.assign(memo, value),
+        (memo, value) => Object.assign(memo, value.Resources),
         {}
       );
     }
