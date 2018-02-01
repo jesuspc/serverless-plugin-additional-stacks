@@ -212,6 +212,13 @@ class AdditionalStacksPlugin {
 
   // This is where we actually handle the deployment to AWS
   deployStack(stackName, stack) {
+    let resources = stack.Resources;
+    if (Array.isArray(resources)) {
+      resources = resources.reduce(
+        (memo, value) => Object.assign(memo, value),
+        {}
+      );
+    }
     // Generate the CloudFormation template
     const compiledCloudFormationTemplate = {
       "AWSTemplateFormatVersion": "2010-09-09",
@@ -221,7 +228,7 @@ class AdditionalStacksPlugin {
       "Mappings": stack.Mappings || undefined,
       "Conditions": stack.Conditions || undefined,
       "Transform": stack.Transform || undefined,
-      "Resources": stack.Resources || undefined,
+      "Resources": resources || undefined,
       "Outputs": stack.Outputs || undefined,
     }
 
