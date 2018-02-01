@@ -212,7 +212,7 @@ class AdditionalStacksPlugin {
 
   // This is where we actually handle the deployment to AWS
   deployStack(stackName, stack) {
-    let resources = stack.Resources;
+    let resources = stack.resources;
     if (Array.isArray(resources)) {
       resources = resources.reduce(
         (memo, value) => Object.assign(memo, value),
@@ -228,7 +228,7 @@ class AdditionalStacksPlugin {
       "Mappings": stack.Mappings || undefined,
       "Conditions": stack.Conditions || undefined,
       "Transform": stack.Transform || undefined,
-      "Resources": resources || undefined,
+      "Resources": resources.Resources || stack.Resources || undefined,
       "Outputs": stack.Outputs || undefined,
     }
 
