@@ -228,7 +228,7 @@ class AdditionalStacksPlugin {
       "Mappings": stack.Mappings || undefined,
       "Conditions": stack.Conditions || undefined,
       "Transform": stack.Transform || undefined,
-      "Resources": resources.Resources || stack.Resources || undefined,
+      "Resources": (resources && resources.Resources) || stack.Resources || undefined,
       "Outputs": stack.Outputs || undefined,
     }
 
